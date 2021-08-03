@@ -27,7 +27,7 @@ function Pipe() {
             title: "Game Over",
             text: "You hit the block!",
             icon: "warning",
-            buttons: ["Rank", "Continue"],
+            buttons: ["Rank", "OK"],
         })
             .then((isContinue) => {
                 if (isContinue) {
@@ -36,7 +36,7 @@ function Pipe() {
                 else {
                     swal({
                         title: "Rank",
-                        text: "First Place: Allen",
+                        text: "BEST: 20",
                         button: "OK",
                     })
                         .then((isOK) => {
