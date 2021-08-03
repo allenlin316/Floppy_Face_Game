@@ -1,3 +1,4 @@
+[![hackmd-github-sync-badge](https://hackmd.io/ziu6XW37RYO5KlIVrxdhdQ/badge)](https://hackmd.io/ziu6XW37RYO5KlIVrxdhdQ)
 ![狀態:開發中](https://img.shields.io/badge/status-developing-orange)
 # Floppy Face Game
 
