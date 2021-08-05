@@ -1,11 +1,9 @@
 function Pipe() {
-
+    this.holeTopMax = 130;
+    this.holeTopMin = 30;
     this.speed = -2;
-    this.holeTopMax = 40;
-    this.holeTopMin = 330;
     this.holeTop = random(this.holeTopMax, this.holeTopMin);
     this.holeBottom = this.holeTop + 150;
-    //console.log(this.holeTop);
     this.x = 300;
 
     this.show = () => {
@@ -19,32 +17,5 @@ function Pipe() {
 
     this.update = () => {
         this.x += this.speed;
-    };
-
-    this.gameOver = () => {
-        noLoop();
-        swal({
-            title: "Game Over",
-            text: "You hit the block!",
-            icon: "warning",
-            buttons: ["Rank", "OK"],
-        })
-            .then((isContinue) => {
-                if (isContinue) {
-                    location.reload();
-                }
-                else {
-                    swal({
-                        title: "Rank",
-                        text: "BEST: 20",
-                        button: "OK",
-                    })
-                        .then((isOK) => {
-                            if (isOK) {
-                                location.reload();
-                            }
-                        });
-                }
-            });
     };
 };
