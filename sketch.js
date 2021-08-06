@@ -20,8 +20,11 @@ function setup() {
 function preload() {
     hitSound = loadSound("sound/Hit sound.mp3");
     jumpSound = loadSound("sound/Cute sound.mp3");
-    scoreSound = loadSound("sound/Ding sound.mp3");
+    scoreSound = loadSound("sound/Score sound.mp3");
     bgm = loadSound("sound/Investigations – Kevin MacLeod.mp3");
+    jumpSound.setVolume(0.5);
+    scoreSound.setVolume(0.3);
+    hitSound.setVolume(0.5);
 }
 
 function draw() {
@@ -105,7 +108,7 @@ function gameOver() {
             else {
                 swal({
                     title: "Rank",
-                    text: `BEST: 20\nUr score: ${Math.ceil(score / 11)}`,
+                    text: `BEST: 20\n\nUr score: ${Math.ceil(score / 11)}`,
                     button: "OK",
                 })
                     .then((isOK) => {
