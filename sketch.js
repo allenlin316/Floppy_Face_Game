@@ -4,18 +4,11 @@ let score = 0;
 let bird;
 let pipe = [];
 let rank;
+let howToPlay;
 let jumpSound;
 let hitSound;
 let scoreSound;
 let bgm;
-
-function setup() {
-    createCanvas(300, 500);
-    menu = new Menu();
-    bird = new Bird();
-    rank = new Rank();
-    bgm.loop();
-}
 
 function preload() {
     hitSound = loadSound("sound/Hit sound.mp3");
@@ -27,6 +20,15 @@ function preload() {
     hitSound.setVolume(0.5);
 }
 
+function setup() {
+    createCanvas(300, 500);
+    menu = new Menu();
+    bird = new Bird();
+    rank = new Rank();
+    howToPlay = new HowToPlay();
+    bgm.loop();
+}
+
 function draw() {
     background(220);
     if (gameMode == 0) {
@@ -35,8 +37,10 @@ function draw() {
         if (menu.start()) {
             score = 0;
             gameMode = 1;
-        } else if (menu.rank()) {
+        } else if (menu.howToPlay()) {
             gameMode = 2;
+        } else if (menu.rank()) {
+            gameMode = 3;
         } else {
             gameMode = 0;
         }
@@ -69,6 +73,11 @@ function draw() {
         bird.update();
         setScore();
         bird.show();
+    }
+
+    else if (gameMode == 2) {
+        howToPlay.show();
+        gameMode = 0;
     }
 
     else {

@@ -1,6 +1,7 @@
 function Menu() {
 
     this.startBtn = false;
+    this.howToPlayBtn = false;
     this.rankBtn = false;
 
     this.faceX = -40;
@@ -23,11 +24,19 @@ function Menu() {
         // play button
         fill("#ff7f50");
         noStroke();
-        this.startBtn = rect(100, 300, 100, 50, 4);
-        //console.log(this.startBtn);
+        this.startBtn = rect(100, 250, 100, 50, 4);
+        console.log(this.startBtn);
         fill(255);
         stroke(0);
-        triangle(138, 310, 138, 340, 168, 325);
+        triangle(138, 260, 138, 290, 168, 275);
+        // how to play button
+        fill("#ff7f50");
+        noStroke();
+        this.howToPlayBtn = rect(100, 315, 100, 50, 4);
+        fill(255);
+        stroke(0);
+        textSize(25);
+        text("How?", 120, 350);
         // rank button
         fill("#ff7f50");
         noStroke();
@@ -47,8 +56,19 @@ function Menu() {
     };
 
     this.start = () => {
-        if ((this.startBtn.mouseX >= 100 && this.startBtn.mouseX <= 200) && (this.startBtn.mouseY <= 350 && this.startBtn.mouseY >= 300)) {
-            if (this.rankBtn.mouseIsPressed) {
+        let btn = this.startBtn;
+        if ((btn.mouseX >= 100 && btn.mouseX <= 200) && (btn.mouseY <= 300 && btn.mouseY >= 250)) {
+            if (btn.mouseIsPressed) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    this.howToPlay = () => {
+        let btn = this.howToPlayBtn;
+        if ((btn.mouseX >= 100 && btn.mouseX <= 200) && (btn.mouseY <= 365 && btn.mouseY >= 315)) {
+            if (btn.mouseIsPressed) {
                 return true;
             }
         }
@@ -56,12 +76,12 @@ function Menu() {
     };
 
     this.rank = () => {
-        if ((this.rankBtn.mouseX >= 100 && this.rankBtn.mouseX <= 200) && (this.rankBtn.mouseY <= 430 && this.rankBtn.mouseY >= 380)) {
-            if (this.rankBtn.mouseIsPressed) {
+        let btn = this.rankBtn;
+        if ((btn.mouseX >= 100 && btn.mouseX <= 200) && (btn.mouseY <= 430 && btn.mouseY >= 380)) {
+            if (btn.mouseIsPressed) {
                 return true;
             }
         }
-
         return false;
     };
 }
