@@ -3,15 +3,9 @@ function Rank() {
     this.show = () => {
         swal({
             title: "Rank",
-            text: "BEST: 35",
+            text: "Allen's BEST: 21",
             button: "OK",
         })
-        // .then((isOk) => {
-        //     if (isOk) {
-        //         //location.reload();
-
-        //     }
-        // });
     }
 
 }
