@@ -28,7 +28,6 @@ function Bird() {
         this.velocity += this.lift;
         this.velocity = this.velocity * 0.8;
         this.y += this.velocity;
-        //console.log(this.velocity);
     };
 
 }

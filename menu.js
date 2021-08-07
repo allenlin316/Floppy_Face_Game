@@ -25,7 +25,6 @@ function Menu() {
         fill("#ff7f50");
         noStroke();
         this.startBtn = rect(100, 250, 100, 50, 4);
-        console.log(this.startBtn);
         fill(255);
         stroke(0);
         triangle(138, 260, 138, 290, 168, 275);

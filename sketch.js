@@ -5,10 +5,7 @@ let bird;
 let pipe = [];
 let rank;
 let howToPlay;
-let jumpSound;
-let hitSound;
-let scoreSound;
-let bgm;
+let jumpSound, hitSound, scoreSound, bgm;
 
 function preload() {
     hitSound = loadSound("sound/Hit sound.mp3");
@@ -47,31 +44,29 @@ function draw() {
     }
 
     else if (gameMode == 1) {
-        if (frameCount % 100 == 0) {
+        if (frameCount % 70 == 0) {
             pipe.push(new Pipe());
         }
 
         for (let i = 0; i < pipe.length; i++) {
             pipe[i].update();
             pipe[i].show();
-
-            if (isLose(i)) {
-                hitSound.play();
-                gameOver();
-            }
-            if (isLose(i)) {
+            if (pipe[i].isHit(bird)) {
                 hitSound.play();
                 gameOver();
             }
             if (isScore(i)) {
                 // when the bird pass the hole without toching the black bar
-                if (score % 11 == 0)
-                    scoreSound.play();
+                scoreSound.play();
                 score++;
             }
+            if (pipe[i].offScreen()) {
+                pipe.splice(i, 1);
+                i--;
+            }
         }
-        bird.update();
         setScore();
+        bird.update();
         bird.show();
     }
 
@@ -91,17 +86,6 @@ function mousePressed() {
     bird.up();
 }
 
-function isLose(i) {
-    // bird.y is the bottom of the bird emoji, and the size of the emoji is 40
-    if ((bird.x + 40 >= pipe[i].x && pipe[i].x >= 0) && (bird.y - 35 <= pipe[i].holeTop || bird.y >= pipe[i].holeBottom)) {
-        return true;
-    }
-    if (bird.y >= 500) {
-        return true;
-    }
-    return false;
-}
-
 function gameOver() {
     noLoop();
     swal({
@@ -112,32 +96,29 @@ function gameOver() {
     })
         .then((isContinue) => {
             if (isContinue) {
-                location.reload();
+                gameMode = 0;
             }
             else {
-                swal({
-                    title: "Rank",
-                    text: `BEST: 20\n\nUr score: ${Math.ceil(score / 11)}`,
-                    button: "OK",
-                })
-                    .then((isOK) => {
-                        if (isOK) {
-                            location.reload();
-                        }
-                    });
+                rank.show();
+                gameMode = 0;
             }
+            // clear the whole array from index 0
+            pipe.splice(0);
+            loop();
         });
 }
 
 function isScore(i) {
-    if (bird.x + 40 >= pipe[i].x + 20 && pipe[i].x >= 10) {
+    if (bird.x + 40 == pipe[i].x + 10)
         return true;
-    }
+    // if ((bird.x + 40 >= pipe[i].x + 10) && (pipe[i].x >= 10)) {
+    //     return true;
+    // }
     return false;
 }
 
 function setScore() {
     textSize(25);
     fill(0);
-    text(`Score: ${Math.ceil(score / 11)}`, 100, 50);
+    text(`Score: ${score}`, 100, 50);
 }
