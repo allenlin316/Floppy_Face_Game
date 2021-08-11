@@ -81,10 +81,15 @@ function draw() {
     }
 }
 
-function mousePressed() {
+document.addEventListener('click', () => {
     jumpSound.play();
     bird.up();
-}
+})
+
+// function mousePressed() {
+//     jumpSound.play();
+//     bird.up();
+// }
 
 function gameOver() {
     noLoop();
