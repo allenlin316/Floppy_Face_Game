@@ -80,14 +80,8 @@ function draw() {
         gameMode = 0;
     }
 }
-let released = false;
-function mouseReleased() {
-    released = true;
-    return false;
-}
 
 function mousePressed() {
-    if (!released) return;
     jumpSound.play();
     bird.up();
 }
