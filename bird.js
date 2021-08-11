@@ -26,7 +26,7 @@ function Bird() {
 
     this.up = () => {
         this.velocity += this.lift;
-        this.velocity = this.velocity * 0.8;
+        this.velocity = this.velocity * 0.6;
         this.y += this.velocity;
     };
 

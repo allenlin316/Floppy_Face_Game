@@ -80,8 +80,14 @@ function draw() {
         gameMode = 0;
     }
 }
+let released = false;
+function mouseReleased() {
+    released = true;
+    return false;
+}
 
 function mousePressed() {
+    if (!released) return;
     jumpSound.play();
     bird.up();
 }
@@ -90,7 +96,7 @@ function gameOver() {
     noLoop();
     swal({
         title: "Game Over",
-        text: "You hit the block!",
+        text: `You hit the block!\n\nUr score: ${score}`,
         icon: "warning",
         buttons: ["Rank", "OK"],
     })
